@@ -6,6 +6,7 @@ import (
 	"errors"
 	"fmt"
 	"strconv"
+	"strings"
 )
 
 
@@ -131,6 +132,8 @@ func (b *Bitcoind) GetRawBlock(blockHash string) (block string, err error) {
 		return
 	}
 	block = string(r.Result)
+	block = strings.TrimPrefix(block, "\"")
+	block = strings.TrimSuffix(block, "\"")
 	return
 }
 
